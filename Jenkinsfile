@@ -16,7 +16,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
                     sh "sh mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoat -Dsonar.projectName='WebGoat' -Dsonar.host.url=http://localhost:9000 -Dsonar.token=sqp_62eeecfcaeab77025a8a3ed110b6f8e8d1d626b6"
-"
+
                 }
             }
         }
