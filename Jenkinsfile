@@ -12,6 +12,11 @@ pipeline {
             }
         }
 
+        stage('force update') {
+            steps {
+                sh 'rm -rf ~/.m2/repository/*'
+            }    
+        }
         stage('Complete and Run SonarQube Analysis') {
             steps {
                 withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
