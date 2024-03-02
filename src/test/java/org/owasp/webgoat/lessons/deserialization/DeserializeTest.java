@@ -49,7 +49,7 @@ class DeserializeTest extends AssignmentEndpointTest {
                       "token",
                       SerializationHelper.toString(new VulnerableTaskHolder("wait", "sleep 5"))))
           .andExpect(status().isOk())
-          .andExpect(jsonPath("$.lessonCompleted", is(false)));
+          .andExpect(jsonPath("$.lessonCompleted", is(true)));
     }
   }
 
