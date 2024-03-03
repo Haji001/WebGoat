@@ -14,6 +14,7 @@ pipeline {
                             -Dsonar.projectKey=WebGoat \
                             -Dsonar.projectName="WebGoat" \
                             -Dsonar.host.url=http://localhost:9000'
+                    }
                 }
             }
         }
