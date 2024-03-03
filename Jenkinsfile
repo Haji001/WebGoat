@@ -31,7 +31,7 @@ pipeline {
                     sh 'mvn clean verify sonar:sonar \
                         -Dsonar.projectKey=WebGoat \
                         -Dsonar.projectName="WebGoat" \
-                        -Dsonar.login=$SONAR_TOKEN
+                        -Dsonar.login=$SONAR_TOKEN \
                         -Dsonar.host.url=http://localhost:9000'
                 }
             }
