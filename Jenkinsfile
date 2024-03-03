@@ -7,11 +7,13 @@ pipeline {
     stages {
         stage('testing') {
             steps {
-                withSonarQubeEnv(installationName: 'SonarQube Host', credentialsId: 'SONAR_TOKEN') {
-                    sh 'mvn clean verify sonar:sonar \
-                        -Dsonar.projectKey=WebGoat \
-                        -Dsonar.projectName="WebGoat" \
-                        -Dsonar.host.url=http://localhost:9000'
+                script {
+                    cleanWs()
+                    withSonarQubeEnv(installationName: 'SonarQube Host', credentialsId: 'SONAR_TOKEN') {
+                        sh 'mvn clean verify sonar:sonar \
+                            -Dsonar.projectKey=WebGoat \
+                            -Dsonar.projectName="WebGoat" \
+                            -Dsonar.host.url=http://localhost:9000'
                 }
             }
         }
