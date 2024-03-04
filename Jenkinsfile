@@ -26,9 +26,9 @@ pipeline {
                     $class: 'GitSCM',
                     branches: [[name: '*/test001']],
                     userRemoteConfigs: [[url: 'https://github.com/Haji001/WebGoat.git']]
-        //         ])
-        //     }
-        // }
+                ])
+            }
+        }
 
         // stage('Testing') {
         //     steps {
@@ -38,14 +38,14 @@ pipeline {
         //                 -Dsonar.projectName="WebGoat" \
         //                 -Dsonar.login=$SONAR_TOKEN \
         //                 -Dsonar.host.url=http://localhost:9000'
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
+
         stage('build image') {
             steps {
                 script {
-                  app = docker.build registry + ":$BUILD_NUMBER"
-                    }
+                    app = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
