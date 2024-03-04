@@ -1,4 +1,9 @@
 pipeline {
+    environment {
+        registry = "ant0021/testv1"
+        registryCredential = 'dockerlogin'
+        dockerImage = ''
+    }
     agent any
 
     tools {
@@ -21,9 +26,9 @@ pipeline {
                     $class: 'GitSCM',
                     branches: [[name: '*/test001']],
                     userRemoteConfigs: [[url: 'https://github.com/Haji001/WebGoat.git']]
-                ])
-            }
-        }
+        //         ])
+        //     }
+        // }
 
         // stage('Testing') {
         //     steps {
@@ -33,14 +38,13 @@ pipeline {
         //                 -Dsonar.projectName="WebGoat" \
         //                 -Dsonar.login=$SONAR_TOKEN \
         //                 -Dsonar.host.url=http://localhost:9000'
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
         stage('build image') {
             steps {
-                withDockerRegistry([credentialsId: "dockerlogin", url: "https://hub.docker.com/"]) {
-                    script {
-                        app = docker.build("webgoat/v01")
+                script {
+                  app = docker.build registry + ":$BUILD_NUMBER"
                     }
                 }
             }
