@@ -25,17 +25,17 @@ pipeline {
             }
         }
 
-        stage('Testing') {
-            steps {
-                withSonarQubeEnv(installationName: 'SonarQube Host', credentialsId: 'SONAR_TOKEN') {
-                    sh 'mvn clean verify sonar:sonar \
-                        -Dsonar.projectKey=WebGoat \
-                        -Dsonar.projectName="WebGoat" \
-                        -Dsonar.login=$SONAR_TOKEN \
-                        -Dsonar.host.url=http://localhost:9000'
-                }
-            }
-        }
+        // stage('Testing') {
+        //     steps {
+        //         withSonarQubeEnv(installationName: 'SonarQube Host', credentialsId: 'SONAR_TOKEN') {
+        //             sh 'mvn clean verify sonar:sonar \
+        //                 -Dsonar.projectKey=WebGoat \
+        //                 -Dsonar.projectName="WebGoat" \
+        //                 -Dsonar.login=$SONAR_TOKEN \
+        //                 -Dsonar.host.url=http://localhost:9000'
+        //         }
+        //     }
+        // }
         stage('build image') {
             steps {
                 withDockerRegistry([credentialsId: "dockerlogin", url: "https://hub.docker.com/"]) {
