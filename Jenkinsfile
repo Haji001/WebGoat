@@ -1,8 +1,5 @@
 pipeline {
-    environment {
-        registry = "ant0021/testv1"
-        registryCredential = 'dockerlogin'
-        dockerImage = ''
+
     }
     agent any
 
@@ -44,8 +41,11 @@ pipeline {
 
         stage('build image') {
             steps {
-                script {
-                    app = docker.build registry + ":$BUILD_NUMBER"
+                withDockerRegistry([credentialsId: "dockerlogin", url: "https://hub.docker.com/"]) {
+                    script {
+                        app = docker.build("ant0021/testv1")
+                    }
+                
                 }
             }
         }
