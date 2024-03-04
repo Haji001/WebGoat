@@ -1,8 +1,6 @@
 pipeline {
-
-    }
     agent any
-
+    
     tools {
         maven 'MAVEN_3.9.6'
     }
@@ -45,7 +43,6 @@ pipeline {
                     script {
                         app = docker.build("ant0021/testv1")
                     }
-                
                 }
             }
         }
