@@ -19,7 +19,7 @@ pipeline {
                 // Checkout the source code from the GitHub repository
                 checkout([
                     $class: 'GitSCM',
-                    branches: [[name: '*/main']],
+                    branches: [[name: '*/test001']],
                     userRemoteConfigs: [[url: 'https://github.com/Haji001/WebGoat.git']]
                 ])
             }
@@ -33,6 +33,15 @@ pipeline {
                         -Dsonar.projectName="WebGoat" \
                         -Dsonar.login=$SONAR_TOKEN \
                         -Dsonar.host.url=http://localhost:9000'
+                }
+            }
+        }
+        stage('build image') {
+            steps {
+                withDockerRegistry([credentialsId: "dockerlogin", url: "https://hub.docker.com/"]) {
+                    script {
+                        app = docker.build("webgoat/v01")
+                    }
                 }
             }
         }
