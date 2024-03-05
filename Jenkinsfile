@@ -1,6 +1,4 @@
 pipeline {
-
-    }
     agent any
     
     tools {
@@ -48,6 +46,4 @@ pipeline {
         }
     }
 }
-
-
-
+// testing
