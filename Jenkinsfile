@@ -40,7 +40,7 @@ pipeline {
         stage('build image') {
             steps {
                 sh 'docker build -t ant0021:v1 .'
-                }
+                
             }
         }
     }
