@@ -19,7 +19,7 @@ pipeline {
                 // Checkout the source code from the GitHub repository
                 checkout([
                     $class: 'GitSCM',
-                    branches: [[name: '*/test001']],
+                    branches: [[name: '*/main']],
                     userRemoteConfigs: [[url: 'https://github.com/Haji001/WebGoat.git']]
                 ])
             }
