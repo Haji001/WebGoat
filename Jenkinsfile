@@ -39,7 +39,11 @@ pipeline {
 
         stage('build image') {
             steps {
-                sh 'docker build -t ant0021:v1 .'
+                withDockerRegistry([credentialsId: "dockerlogin", url: "https://hub.docker.com"]) {
+                    script {
+                        app = docker.build("test/test001")
+                    }
+                }
                 
             }
         }
